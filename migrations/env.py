@@ -4,6 +4,7 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+
 from fast_one.models import table_registry
 from fast_one.settings import Settings
 
@@ -11,6 +12,8 @@ from fast_one.settings import Settings
 # access to the values within the .ini file in use.
 config = context.config
 config.set_main_option('sqlalchemy.url', Settings().DATABASE_URL)
+# Replace 'your_database_url' with the actual database URL or fetch it from environment/config
+# config.set_main_option('sqlalchemy.url', Settings(DATABASE_URL="your_database_url").DATABASE_URL)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

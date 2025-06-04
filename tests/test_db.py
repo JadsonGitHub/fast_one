@@ -1,16 +1,18 @@
 from dataclasses import asdict
 
+# from datetime import datetime
 from sqlalchemy import select
 
 from fast_one.models import User
 
 
 def test_create_user(session, mock_db_time):
+    # with mock_db_time(model=User, time=datetime.now()) as time:
     with mock_db_time(model=User) as time:
         new_user = User(username='test', email='test@test', password='secret')
 
-    session.add(new_user)
-    session.commit()
+        session.add(new_user)
+        session.commit()
 
     user = session.scalar(select(User).where(User.username == 'test'))
 
