@@ -6,7 +6,6 @@ def test_root(client):
     # Assert
     assert response.status_code == HTTPStatus.OK
     assert response.json() == {'message': 'Hello, World! 🤣'}
-    # assert response.json() == {'message': 'Olá Mundo!'}
 
 
 def test_create_user(client):
@@ -14,16 +13,15 @@ def test_create_user(client):
         '/users/',
         json={
             'username': 'alice',
-            'password': 'secret',
             'email': 'alice@example.com',
+            'password': 'secret',
         },
     )
-
     assert response.status_code == HTTPStatus.CREATED
     assert response.json() == {
-        'id': 1,
         'username': 'alice',
         'email': 'alice@example.com',
+        'id': 1,
     }
 
 

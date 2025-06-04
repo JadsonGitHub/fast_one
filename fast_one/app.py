@@ -17,7 +17,6 @@ database = []
 @app.get('/', status_code=HTTPStatus.OK, response_model=Message)
 def read_root():
     return {'message': 'Hello, World! 🤣'}
-    # return Message(message='Hello, World! 🤣')
 
 
 @app.post('/users/', status_code=HTTPStatus.CREATED, response_model=UserPublic)
