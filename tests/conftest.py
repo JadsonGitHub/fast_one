@@ -7,12 +7,20 @@ from sqlalchemy import create_engine, event
 from sqlalchemy.orm import Session
 
 from fast_one.app import app
+from fast_one.database import get_session
 from fast_one.models import table_registry
 
 
 @pytest.fixture
-def client():
-    return TestClient(app)
+def client(session):
+    def get_session_override():
+        return session
+
+    with TestClient(app) as client:
+        app.dependency_overrides[get_session] = get_session_override
+        yield client
+
+    app.dependency_overrides.clear()
 
 
 @pytest.fixture
