@@ -51,8 +51,8 @@ def test_update_user(client, user, token):
 
 def test_update_integrity_error(client, user, token):
     # Inserindo "fausto"
-    client.post(
-        '/users',
+    response_update = client.post(
+        '/users/',
         json={
             'username': 'fausto',
             'email': 'fausto@example.com',
@@ -60,7 +60,7 @@ def test_update_integrity_error(client, user, token):
         },
     )
 
-    # Alterando o user das fixture para fausto
+    # Alterando o user da fixture para fausto
     response_update = client.put(
         f'/users/{user.id}',
         headers={'Authorization': f'Bearer {token}'},
