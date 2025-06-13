@@ -35,12 +35,12 @@ async def create_user(user: UserSchema, session: Session):
         if db_user.username == user.username:
             raise HTTPException(
                 status_code=HTTPStatus.CONFLICT,
-                detail='Username already exists',
+                detail='Username Already Exists',
             )
         elif db_user.email == user.email:
             raise HTTPException(
                 status_code=HTTPStatus.CONFLICT,
-                detail='Email already exists',
+                detail='Email Already Exists',
             )
 
     db_user = User(
@@ -96,7 +96,7 @@ async def update_user(
     except IntegrityError:
         raise HTTPException(
             status_code=HTTPStatus.CONFLICT,
-            detail='Username or Email already exists',
+            detail='Username or Email Already Exists',
         )
 
 
@@ -112,4 +112,4 @@ async def delete_user(
     await session.delete(current_user)
     await session.commit()
 
-    return {'message': 'User deleted'}
+    return {'message': 'User Deleted'}
