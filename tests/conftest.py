@@ -28,7 +28,8 @@ def client(session):
     app.dependency_overrides.clear()
 
 
-@pytest.fixture(scope='session')  # scope='module' can also be used
+# scope= function, class,  module, package, or session
+@pytest.fixture(scope='session')
 def engine():
     with PostgresContainer('postgres:17', driver='psycopg') as postgres:
         yield create_async_engine(postgres.get_connection_url())

@@ -20,3 +20,12 @@ CMD poetry run uvicorn --host 0.0.0.0 fast_one.app:app
 # docker run -it --name fastoneapp -p 8000:8000 fast_one:latest
 # docker stop fastoneapp
 # docker rm fastoneapp
+
+# docker run -d \
+#     --name app_database \
+#     -e POSTGRES_USER=app_user \
+#     -e POSTGRES_DB=app_db \
+#     -e POSTGRES_PASSWORD=app_password \
+#     -v pgdata:/var/lib/postgresql/data \
+#     -p 5432:5432 \
+#     postgres
