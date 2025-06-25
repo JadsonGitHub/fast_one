@@ -34,5 +34,3 @@ jobs:
 
       - name: Executar testes
         run: poetry run task test
-
-# gh secret set -f .env
